@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<div id="starsystem">
+		</div>
+		<script type="text/javascript" src="Dice.js"></script>
+		<script type="text/javascript" src="Sizes.js"></script>
+		<script type="text/javascript" src="Atmospheres.js"></script>
+		<script type="text/javascript" src="Temperatures.js"></script>
+		<script type="text/javascript" src="Hydrographics.js"></script>
+		<script type="text/javascript" src="Population.js"></script>
+		<script type="text/javascript" src="Governments.js"></script>
+		<script type="text/javascript" src="Factions.js"></script>
+		<script type="text/javascript" src="LawLevels.js"></script>
+		<script type="text/javascript" src="Quirks.js"></script>
+		<script type="text/javascript" src="Starports.js"></script>
+		<script type="text/javascript" src="TechLevels.js"></script>
+		<script type="text/javascript" src="TradeCodes.js"></script>
+		<script type="text/javascript" src="Starsystem.js"></script>
+		<script type="text/javascript" src="mustache.js"></script>
+		<script type="text/javascript">
+			function loadTemplate() {
+				var template = this.responseText;
+				var starText =  Mustache.render(template, Starsystem);
+				document.getElementById("starsystem").innerHTML = starText;
+			}
+
+			var templateRequest = new XMLHttpRequest();
+			templateRequest.onload = loadTemplate;
+			templateRequest.open("get", "starsystem.mustache");
+			templateRequest.overrideMimeType("text/plain");
+			templateRequest.send();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+{
+	"name": "Traveller_Universe_Creation_Kit",
+	"description": "A one-stop got-get for all your universe-creation needs",
+	"version": "0.0.1",
+	"private": true,
+	"dependencies": {
+		"express": "3.x"
+	}
+}

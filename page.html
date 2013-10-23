@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Test-page for totally interactive sector-generation thing for a standard Traveller universe</title>
+	</head>
+	<body>
+		<h1>A test-page</h1>
+		<div id="fetchNewSubSectorControls"><button id="fetchButton" onclick="javascript:fetchNewSubSector();">Fetch a new sub-sector</button></div>
+		<div id="startSavingSectorControls" style="display:none;"><button id="saveButton" onclick="javascript:startSaveSubSector();">Save this sub-sector</button></div>
+		<hr/>
+
+		<div id="detailsInside"></div>
+		
+		<script type="text/javascript" src="mustache.js"></script>
+		
+		<script type="unknown" id="subsectorTemplate">
+			<div id='genSys'>
+			<h2>Welcome to subsystem {{Name.name}}!</h2>
+			<h3>A place to travel around as a murder-hobo</h3>
+			<h3>Key statistics</h3>
+			<p>We have {{PopulatedWorlds}} populated worlds for you to visit and trade with</p>
+			<p>They have an average population-classification of {{AveragePopulation}} and a technology level of {{AverageTechLevel}}. Imagine the possibilities!
+			<h3>The systems in detail</h3>
+			{{#systems}}
+			<h4>{{Coordinate}} {{System.Name.name}}</h4>
+				{{#System.Name}}
+					<p>
+					{{System.Name.name}} is a {{System.Size.size}} celestial body with a population in the {{System.Population.population}}. Their economy is described as '{{System.TechLevel.quality}}'.
+					</p>
+					<p>About their economy: <em>''{{System.TechLevel.description}}''</em></p>
+				{{/System.Name}}
+			{{/systems}}
+			
+			</div>
+		</script>
+		
+		<script type="text/javascript">
+			var func = document.getElementById("detailsInside");
+	
+			var currentSystem = undefined;
+
+			function startSaveSubSector() {
+				console.log("I would like to save " + currentSystem);
+			}
+
+			function receiveNewSubSector() {
+				currentSystem = this.response;
+				var bod = Mustache.render(document.getElementById("subsectorTemplate").innerHTML, this.response);
+				var genSys = document.getElementById("genSys");
+				if (genSys) {
+					func.removeChild(genSys);
+				}
+				func.insertAdjacentHTML('afterbegin', bod);
+			}
+
+			function fetchNewSubSector() {
+				var req = new XMLHttpRequest();
+				req.onload = receiveNewSubSector;
+				req.open("get", "NewSubSector");
+				req.responseType = "json";
+				req.send();
+			}
+			
+		</script>
+	</body>
+</html>
