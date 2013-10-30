@@ -116,6 +116,7 @@ module.exports.select = function(Dice){
 	}
 	if (Dice.rollD6(2) > template["Naval Base"]) {
 		port.Bases.push({"Base": "Naval Base"});
+		port.HasNavalBase = true;
 	}
 	if (Dice.rollD6(2) > template["Scout Base"]) {
 		port.Bases.push({"Base": "Scout Base"});
@@ -128,6 +129,7 @@ module.exports.select = function(Dice){
 	}		
 	if (Dice.rollD6(2) > template["Imperial Consulate"]) {
 		port.Bases.push({"Base": "Imperial Consulate"});
+		port.HasImperialConsulate = true;
 	}
 	if (Dice.rollD6(2) > template["Pirate"]) {
 		port.Bases.push({"Base": "Pirate"});

@@ -1,6 +1,8 @@
 var Dice = require("./Dice.js");
 var Starsystem = require("./Starsystem.js");
 var Names = require("./Names.js");
+var TradeRoutes = require("./TradeRoutes.js");
+var CommunicationRoutes = require("./CommunicationRoutes.js");
 
 function subCoord(n) {
 	if (n >= 10) {
@@ -17,9 +19,14 @@ function selectName() {
 	return names[Dice.rollDX(names.length) - 1];
 }
 
+module.exports.distance = function(SystemA, SystemB) {
+	return 8;
+}
+
 module.exports.generate = function() {
 	Names.useTradition(Names.Greek);
 	var subsector = {"systems": []};
+	subsector.Name = Names.select();
 	var populatedSectors = 0;
 	var totalPopulation = 0;
 	var totalTech = 0;
@@ -50,7 +57,9 @@ module.exports.generate = function() {
 	subsector.PopulatedWorlds = populatedSectors;
 	subsector.AveragePopulation = Number((totalPopulation / populatedSectors).toFixed(2));
 	subsector.AverageTechLevel = Number((totalTech / populatedSectors).toFixed(2));
-	subsector.Name = Names.select();
+	
+	CommunicationRoutes.addCommunicationRoutes(subsector);
+	TradeRoutes.addTradeRoutes(subsector);
 
 	return subsector;
 }

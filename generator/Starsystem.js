@@ -36,6 +36,16 @@ module.exports.generate = function(name) {
 	// misc
 	starsystem.TravelCode = TravelCodes.select(starsystem);
 	starsystem.Name = name;
+	
+	starsystem.hasClassAStarport = function() {
+		return starsystem.Starport.Class == "A";
+	};
+	starsystem.hasImperialConsulate = function() {
+		return starsystem.Starport.HasImperialConsulate;
+	};
+	starsystem.hasNavalBase = function() {
+		return starsystem.Starport.HasNavalBase;
+	};
 
 	return starsystem;
 }
