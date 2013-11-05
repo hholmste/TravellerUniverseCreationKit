@@ -12,7 +12,11 @@ function subCoord(n) {
 }
 
 function coord(row, column) {
-	return subCoord(row) + subCoord(column);
+	return {
+		"coordinate": subCoord(row) + subCoord(column),
+		"row": row,
+		"column": column
+	}
 } 
 
 function selectName() {
@@ -20,7 +24,7 @@ function selectName() {
 }
 
 module.exports.distance = function(SystemA, SystemB) {
-	return 8;
+	return Math.max(Math.abs(SystemA.Coordinate.row - SystemB.Coordinate.row), Math.abs(SystemA.Coordinate.column - SystemB.Coordinate.column));
 }
 
 module.exports.generate = function() {
@@ -54,11 +58,11 @@ module.exports.generate = function() {
 		}
 	}
 
+	subsector.CommunicationRoutes = CommunicationRoutes.calculateCommunicationRoutes(subsector);
 	subsector.PopulatedWorlds = populatedSectors;
 	subsector.AveragePopulation = Number((totalPopulation / populatedSectors).toFixed(2));
 	subsector.AverageTechLevel = Number((totalTech / populatedSectors).toFixed(2));
-	
-	CommunicationRoutes.addCommunicationRoutes(subsector);
+
 	TradeRoutes.addTradeRoutes(subsector);
 
 	return subsector;
