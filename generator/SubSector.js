@@ -13,7 +13,7 @@ function subCoord(n) {
 
 function coord(row, column) {
 	return {
-		"coordinate": subCoord(row) + subCoord(column),
+		"coordinate": subCoord(column) + subCoord(row),
 		"row": row,
 		"column": column
 	}
@@ -27,6 +27,51 @@ module.exports.distance = function(SystemA, SystemB) {
 	return Math.max(Math.abs(SystemA.Coordinate.row - SystemB.Coordinate.row), Math.abs(SystemA.Coordinate.column - SystemB.Coordinate.column));
 }
 
+function neighbouringCoordinates(Coordinate) {
+	var neighbours = [];
+	var rowDelta = (Coordinate.column % 2 == 1) ? -1 : 0;
+	pushCoordinate(Coordinate.row - 1, Coordinate.column, neighbours);
+	pushCoordinate(Coordinate.row + rowDelta, Coordinate.column + 1, neighbours);
+	pushCoordinate(Coordinate.row + rowDelta + 1, Coordinate.column + 1, neighbours);
+	pushCoordinate(Coordinate.row + 1, Coordinate.column, neighbours);
+	pushCoordinate(Coordinate.row + rowDelta + 1, Coordinate.column - 1, neighbours);
+	pushCoordinate(Coordinate.row + rowDelta, Coordinate.column - 1, neighbours);
+	return neighbours;
+}
+
+function pushCoordinate(row, column, neighbours) {
+	neighbours.push({
+		"coordinate": subCoord(row, column),
+		"row": row,
+		"column": column
+	});
+}
+
+function systemAt(coord, Systems) {
+	for (var i = 0; i < Systems.length; i++) {
+		if (coord.row == Systems[i].Coordinate.row
+			&& coord.column == Systems[i].Coordinate.column
+			&& Systems[i].System != "Empty") {
+			return Systems[i];
+		}
+	}
+	return null;
+}
+
+module.exports.neighbourhood = function(System, Systems) {
+	var coordinates = neighbouringCoordinates(System.Coordinate);
+	var neighbours = [];
+	coordinates.forEach(function(coord) {
+		if (coord.row >= 1 && coord.column >= 1) {
+			var foundSystem = systemAt(coord, Systems)
+			if (foundSystem) {
+				neighbours.push(foundSystem);	
+			}
+		}
+	});
+	return neighbours;
+}
+
 module.exports.generate = function() {
 	Names.useTradition(Names.Greek);
 	var subsector = {"systems": []};
@@ -35,8 +80,8 @@ module.exports.generate = function() {
 	var totalPopulation = 0;
 	var totalTech = 0;
 
-	for (var row = 1; row < 9; row++) {
-		for (var column = 1; column < 11; column++) {
+	for (var row = 1; row < 11; row++) {
+		for (var column = 1; column < 9; column++) {
 			var occurance = Dice.rollD6();
 			var coordinate = coord(row, column);
 			if (occurance < 4) {
