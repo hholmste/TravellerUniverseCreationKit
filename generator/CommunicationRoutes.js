@@ -41,34 +41,34 @@ function distanceMap(systems) {
 }
 
 function buildRoutes(communicatingSystems) {
-	var c = communicatingSystems.slice(0);
+	var remainingSystems = communicatingSystems.slice(0);
 	var clusters = [];
 
-	while (c.length > 0) {
-		var s = c.shift();
+	while (remainingSystems.length > 0) {
+		var seedSystem = remainingSystems.shift();
 		var stack = [];
-		stack.push(s);
+		stack.push(seedSystem);
 		var cluster = [];
 
 		while(stack.length > 0) {
-			var sys = stack.shift();
-			cluster.push({"Name": sys.System.Name, "Coordinate": sys.Coordinate});
+			var candidateSystem = stack.shift();
+			cluster.push({"Name": candidateSystem.System.Name, "Coordinate": candidateSystem.Coordinate});
 			
-			var newC = [];
+			var rejectedSystems = [];
 			var nearby = [];
-			c.forEach(function(item) {
-				if (SubSector.distance(sys, item) <= 2) {
-					nearby.push(item);
+			remainingSystems.forEach(function(neighbour) {
+				if (SubSector.distance(candidateSystem, neighbour) <= 2) {
+					nearby.push(neighbour);
 				} else {
-					newC.push(item);
+					rejectedSystems.push(neighbour);
 				}
 			});
-			nearby.forEach(function(item){
-				stack.push(item);
+			nearby.forEach(function(neighbour){
+				stack.push(neighbour);
 			});
-			c = newC;
+			remainingSystems = rejectedSystems;
 		}
-		
+
 		clusters.push(cluster);
 	}
 	return clusters;
