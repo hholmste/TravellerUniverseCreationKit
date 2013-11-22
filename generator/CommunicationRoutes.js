@@ -52,7 +52,7 @@ function buildRoutes(communicatingSystems) {
 
 		while(stack.length > 0) {
 			var candidateSystem = stack.shift();
-			cluster.push({"Name": candidateSystem.System.Name, "Coordinate": candidateSystem.Coordinate});
+			cluster.push(candidateSystem.Coordinate.coordinate);
 			
 			var rejectedSystems = [];
 			var nearby = [];
@@ -73,8 +73,6 @@ function buildRoutes(communicatingSystems) {
 	}
 	return clusters;
 }
-
-
 
 module.exports.calculateCommunicationRoutes = function(subsector) {
 	var communicativeSystems = subsector.systems.filter(nonEmpty).filter(communicative);

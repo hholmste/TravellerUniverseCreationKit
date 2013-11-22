@@ -31,7 +31,8 @@ app.get("/:stylesheet.html", function(req, res) {
 
 app.get("/NewSubSector", function(req, res) {
 	res.setHeader("Content-Type", "application/json");
-	res.json(SubSector.generate());
+	var result = SubSector.generate();
+	res.json(result);
 });
 
 app.post("/:sectorName/subsector/:subsectorName", function(req, res) {

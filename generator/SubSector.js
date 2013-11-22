@@ -72,6 +72,15 @@ module.exports.neighbourhood = function(System, Systems) {
 	return neighbours;
 }
 
+function systemAt(subsector, coordinate) {
+	for (var i = 0; i < subsector.systems.length; i++) {
+		if (subsector.systems[i].Coordinate.coordinate == coordinate) {
+			return subsector.systems[i];
+		}
+	}
+	return null;
+}
+
 module.exports.generate = function() {
 	Names.useTradition(Names.Greek);
 	var subsector = {"systems": []};
@@ -103,12 +112,15 @@ module.exports.generate = function() {
 		}
 	}
 
+	subsector.SystemAt = function(coordinate) { return systemAt(subsector, coordinate); };
+
 	subsector.CommunicationRoutes = CommunicationRoutes.calculateCommunicationRoutes(subsector);
+	subsector.MainTradeRoutes = TradeRoutes.addTradeRoutes(subsector);
 	subsector.PopulatedWorlds = populatedSectors;
 	subsector.AveragePopulation = Number((totalPopulation / populatedSectors).toFixed(2));
 	subsector.AverageTechLevel = Number((totalTech / populatedSectors).toFixed(2));
 
-	TradeRoutes.addTradeRoutes(subsector);
+
 
 	return subsector;
 }
