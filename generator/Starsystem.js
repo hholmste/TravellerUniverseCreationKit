@@ -19,7 +19,7 @@ module.exports.generate = function(name) {
 	// the physical
 	starsystem.Size = Sizes.selectSize(Dice);
 	starsystem.Atmosphere = Atmospheres.select(Dice, starsystem.Size.roll);
-	starsystem.Temperature = Temperatures.select(Dice, starsystem.Atmosphere.roll);
+	starsystem.Temperature = Temperatures.select(Dice, starsystem.Atmosphere["temperature adjustement"]);
 	starsystem.Hydrographics = Hydrographics.select(Dice, starsystem.Size.roll, starsystem.Atmosphere.roll, starsystem.Temperature["hydrographic adjustment"]);
 	starsystem.GasGiant = Dice.rollD6(2) < 10 ? true : false;
 

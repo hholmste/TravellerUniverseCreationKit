@@ -114,8 +114,8 @@ module.exports.generate = function() {
 
 	subsector.SystemAt = function(coordinate) { return systemAt(subsector, coordinate); };
 
-	subsector.CommunicationRoutes = CommunicationRoutes.calculateCommunicationRoutes(subsector);
-	subsector.MainTradeRoutes = TradeRoutes.addTradeRoutes(subsector);
+	//subsector.CommunicationRoutes = CommunicationRoutes.calculateCommunicationRoutes(subsector);
+	//subsector.MainTradeRoutes = TradeRoutes.addTradeRoutes(subsector);
 	subsector.PopulatedWorlds = populatedSectors;
 	subsector.AveragePopulation = Number((totalPopulation / populatedSectors).toFixed(2));
 	subsector.AverageTechLevel = Number((totalTech / populatedSectors).toFixed(2));

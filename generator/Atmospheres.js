@@ -5,7 +5,7 @@ var a = {
 		"examples": "Moon",
 		"pressure": "0.00",
 		"survival gear required": "Vacc Suit",
-		"temperature adjustement": 0,
+		"temperature adjustment": 0,
 		"hydrographic adjustment": -4,
 		"TechDM": 1
 	},
@@ -15,7 +15,7 @@ var a = {
 		"examples": "Mars",
 		"pressure": "0.001 to 0.09",
 		"survival gear required": "Vacc Suit",
-		"temperature adjustement": 0,
+		"temperature adjustment": 0,
 		"hydrographic adjustment": -4,
 		"TechDM": 1
 	},
@@ -25,7 +25,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.1 to 0.42",
 		"survival gear required": "Respirator, Filter",
-		"temperature adjustement": -2,
+		"temperature adjustment": -2,
 		"hydrographic adjustment": 0,
 		"TechDM": 1
 	},
@@ -35,7 +35,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.1 to 0.42",
 		"survival gear required": "Respirator",
-		"temperature adjustement": -2,
+		"temperature adjustment": -2,
 		"hydrographic adjustment": 0,
 		"TechDM": 1
 	},
@@ -45,7 +45,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.43 to 0.7",
 		"survival gear required": "Filter",
-		"temperature adjustement": -1,
+		"temperature adjustment": -1,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -55,7 +55,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.43 to 0.7",
 		"survival gear required": "",
-		"temperature adjustement": -1,
+		"temperature adjustment": -1,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -65,7 +65,7 @@ var a = {
 		"examples": "Earth",
 		"pressure": "0.71 to 1.49",
 		"survival gear required": "",
-		"temperature adjustement": 0,
+		"temperature adjustment": 0,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -75,7 +75,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.71 to 1.49",
 		"survival gear required": "Filter",
-		"temperature adjustement": 0,
+		"temperature adjustment": 0,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -85,7 +85,7 @@ var a = {
 		"examples": "",
 		"pressure": "1.5 to 2.49",
 		"survival gear required": "",
-		"temperature adjustement": 1,
+		"temperature adjustment": 1,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -95,7 +95,7 @@ var a = {
 		"examples": "",
 		"pressure": "1.5 to 2.49",
 		"survival gear required": "Filter",
-		"temperature adjustement": 1,
+		"temperature adjustment": 1,
 		"hydrographic adjustment": 0,
 		"TechDM": 0
 	},
@@ -105,7 +105,7 @@ var a = {
 		"examples": "",
 		"pressure": "Varies",
 		"survival gear required": "Air Supply",
-		"temperature adjustement": 2,
+		"temperature adjustment": 2,
 		"hydrographic adjustment": -4,
 		"TechDM": 1
 	},
@@ -115,7 +115,7 @@ var a = {
 		"examples": "Venus",
 		"pressure": "Varies",
 		"survival gear required": "Vacc Suit",
-		"temperature adjustement": 6,
+		"temperature adjustment": 6,
 		"hydrographic adjustment": -4,
 		"TechDM": 1
 	},
@@ -125,7 +125,7 @@ var a = {
 		"examples": "",
 		"pressure": "Varies",
 		"survival gear required": "Vacc Suit",
-		"temperature adjustement": 6,
+		"temperature adjustment": 6,
 		"hydrographic adjustment": -4,
 		"TechDM": 1
 	},
@@ -135,7 +135,7 @@ var a = {
 		"examples": "",
 		"pressure": "2.5+",
 		"survival gear required": "",
-		"temperature adjustement": 2,
+		"temperature adjustment": 2,
 		"hydrographic adjustment": 0,
 		"TechDM": 1
 	},
@@ -145,7 +145,7 @@ var a = {
 		"examples": "",
 		"pressure": "0.5 or less",
 		"survival gear required": "",
-		"temperature adjustement": -1,
+		"temperature adjustment": -1,
 		"hydrographic adjustment": 0,
 		"TechDM": 1
 	},
@@ -155,7 +155,7 @@ var a = {
 		"examples": "",
 		"pressure": "Varies",
 		"survival gear required": "Varies",
-		"temperature adjustement": 2,
+		"temperature adjustment": 2,
 		"hydrographic adjustment": 0,
 		"TechDM": 1
 	}
