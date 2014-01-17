@@ -6,7 +6,7 @@ var app = express();
 app.use(express.bodyParser());
 
 function fetchStatic(filename, contentType, res) {
-	fs.readFile("./" + filename, function(err, data) {
+	fs.readFile("./static/" + filename, function(err, data) {
 		if (err) {
 			console.log("could not find " + filename);
 			res.send(404);
@@ -22,11 +22,15 @@ app.get("/:page.html", function(req, res) {
 });
 
 app.get("/:file.js", function(req, res) {
-	fetchStatic(req.params.file + ".js", "text/javscript", res);
+	fetchStatic("js/" + req.params.file + ".js", "text/javscript", res);
 });
 
-app.get("/:stylesheet.html", function(req, res) {
-	fetchStatic(req.params.stylesheet + ".css", "text/stylesheet", res);
+app.get("/:stylesheet.css", function(req, res) {
+	fetchStatic("style/" + req.params.stylesheet + ".css", "text/css", res);
+});
+
+app.get("/", function(req, res) {
+	fetchStatic("index.html", "text/html", res);
 });
 
 app.get("/NewSubSector", function(req, res) {

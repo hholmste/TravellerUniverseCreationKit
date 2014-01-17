@@ -1,0 +1,8 @@
+#controlpanel {
+	position: absolute;
+	height: 900px;
+	width: 30%;
+	left: 65%;
+	background-color: #FFF;
+	border: 1px solid black;
+}

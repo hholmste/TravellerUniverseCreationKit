@@ -1,0 +1,56 @@
+.system {
+	background: #CCE;
+  opacity: 0.9;
+  width: 75px;
+  height: 106px;
+  position: relative;
+  color: #777;
+  text-align: center;
+  z-index: 1;
+  line-height: 50px;
+  -webkit-filter: drop-shadow(rgba(0,0,0,.75) 0 3px 8px);
+  text-shadow: 0 3px 5px rgba(0,0,0,.55);
+}
+
+.system:hover {
+  background-color: #DDF;
+}
+
+.system::after,
+.system::before {
+  content: '';
+  width: 75px;
+  height: 75px;
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 16px;
+  transform: scaleX(0.5)rotate(45deg);
+  }
+
+.system::before {
+  left: -38px;
+}
+.system::after {
+  left: 38px;
+}
+
+.systemrow {
+  position: relative;
+  margin: 0px 25px -27px;
+  float:left;
+}
+
+.systemrow > div {
+  margin: 0px;
+  float: left;
+  margin:13px;
+}
+
+.systemrow > div:nth-child(even) {
+  top: 53px; 
+}
+
+.subsector {
+  margin-top: 30px;
+}
