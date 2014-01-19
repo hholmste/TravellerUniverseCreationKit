@@ -1,18 +1,26 @@
 .system {
-	background: #CCE;
+	background: #FFF;
+  color: #FFF;
   opacity: 0.9;
   width: 75px;
   height: 106px;
   position: relative;
-  color: #777;
   text-align: center;
   z-index: 1;
   line-height: 50px;
-  -webkit-filter: drop-shadow(rgba(0,0,0,.75) 0 3px 8px);
-  text-shadow: 0 3px 5px rgba(0,0,0,.55);
 }
 
-.system:hover {
+.populated_system {
+  background: #CCE;
+  color: #777;
+}
+
+.empty_system {
+  background: #99B;
+  color: #666;
+}
+
+.populated_system:hover {
   background-color: #DDF;
 }
 
