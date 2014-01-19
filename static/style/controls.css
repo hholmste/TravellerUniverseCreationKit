@@ -5,3 +5,17 @@
 	left: 65%;
 	background-color: #FFF;
 }
+
+button {
+	border: 0px;
+	width: 50%;
+	height: 4em;
+}
+
+#fresh_subsector_button {
+	color: #366;
+	font-family: Arial;
+	font-style: bold;
+	font-size: 1.1em;
+	background-color: #AFA;
+}

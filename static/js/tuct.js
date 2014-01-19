@@ -30,7 +30,7 @@ function initialize_all_the_things() {
 	}); 
 
 	var controlrow = document.getElementById('controlrow');
-	controlrow.innerHTML = "<button onclick='createFreshSubsector();'>Create a fresh subsector</button>";
+	controlrow.innerHTML = "<button id='fresh_subsector_button' onclick='createFreshSubsector();'>Create a fresh subsector</button>";
 }
 
 // the TUCT main app thingamajig
