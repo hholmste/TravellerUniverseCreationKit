@@ -1,21 +1,54 @@
 #controlpanel {
-	position: absolute;
+	position: fixed;
 	height: 900px;
 	width: 30%;
 	left: 65%;
 	background-color: #FFF;
 }
 
+#controlrow {
+	margin-bottom: 1.7em;
+}
+
 button {
+	position: absolute;
 	border: 0px;
-	width: 50%;
+	width: 49%;
 	height: 4em;
+	margin: 2px;
 }
 
 #fresh_subsector_button {
 	color: #366;
-	font-family: Arial;
-	font-style: bold;
 	font-size: 1.1em;
 	background-color: #AFA;
+}
+
+#save_subsector_button {
+	color: #366;
+	font-size: 1.1em;
+	background-color: #AFA;
+	margin-left: 52%;
+}
+
+.sectorinfo {
+	position: absolute;
+	background-color: #AAF;
+	width: 100%;
+	margin-top: 4em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+
+.sectorinfopoint {
+	color: #449;
+	float: right;
+}
+
+.sectorinfoline {
+	padding: 0em 0.5em 0em 0.5em;
+}
+
+.hidden {
+	display:none;
 }

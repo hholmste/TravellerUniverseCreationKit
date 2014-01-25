@@ -27,10 +27,7 @@ function initialize_all_the_things() {
 			system.id = "system_" + system_id;
 			rowElement.appendChild(system);
 		});
-	}); 
-
-	var controlrow = document.getElementById('controlrow');
-	controlrow.innerHTML = "<button id='fresh_subsector_button' onclick='createFreshSubsector();'>Create a fresh subsector</button>";
+	});
 }
 
 // the TUCT main app thingamajig
@@ -44,6 +41,8 @@ function createFreshSubsector() {
 function readSubSystem() {
 	var subsector = JSON.parse(this.responseText);
 	setSectorData(subsector);
+	var saveButton = document.getElementById("save_subsector_button");
+	saveButton.classList.remove("hidden");
 }
 
 function setSectorData(sectorData) {
@@ -66,7 +65,9 @@ function setSectorData(sectorData) {
 
 
 
-var sectorDataTemplate = '<div class="sectorinfo">Subsector <span class="namespan sectorinfopoint">{{Name.name}}</span></div>'
-													+ '<div class="sectorinfo">Populated worlds: <span class="populatedworldsspan sectorinfopoint">{{PopulatedWorlds}}</span></div>'
-													+ '<div class="sectorinfo">Average population level <span class="avgpopulation sectorinfopoint">{{AveragePopulation}}</span></div>'
-													+ '<div class="sectorinfo">Average tech level: <span class="avgtechlevel sectorinfopoint">{{AverageTechLevel}}</span></div>';
+var sectorDataTemplate = '<div class="sectorinfo">'
+													+ '<div class="sectorinfoline">Subsector <span class="namespan sectorinfopoint" contentEditable="true">{{Name.name}}</span></div>'
+													+ '<div class="sectorinfoline">Populated worlds: <span class="populatedworldsspan sectorinfopoint">{{PopulatedWorlds}}</span></div>'
+													+ '<div class="sectorinfoline">Average population level <span class="avgpopulation sectorinfopoint">{{AveragePopulation}}</span></div>'
+													+ '<div class="sectorinfoline">Average tech level: <span class="avgtechlevel sectorinfopoint">{{AverageTechLevel}}</span></div>'
+													+ '</div>';

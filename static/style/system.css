@@ -11,13 +11,13 @@
 }
 
 .populated_system {
-  background: #CCE;
-  color: #777;
+  background: #AAE;
+  color: #444;
 }
 
 .empty_system {
-  background: #99B;
-  color: #666;
+  background: #99E;
+  color: #222;
 }
 
 .populated_system:hover {
