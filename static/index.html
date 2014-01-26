@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		
+		<meta charset="UTF-8">
 		<link rel="stylesheet" href="global.css" />
 		<link rel="stylesheet" href="system.css" />
 		<link rel="stylesheet" href="controls.css" />
@@ -13,8 +13,10 @@
 				<button id='fresh_subsector_button' onclick='createFreshSubsector();'>Create a fresh subsector</button>
 				<button id='save_subsector_button' class="hidden" onclick='saveSubsector();'>Save subsector</button>
 			</div>
-			<div id="sector"></div>
-			<div id="selectedsystem"></div>
+			<div class="infopanel">
+				<div id="sector"></div>
+				<div id="selected_system"></div>
+			</div>
 		</div>
 		<script type="text/javascript" data-main="tuct.js" src="require.js"></script>
 	</body>
