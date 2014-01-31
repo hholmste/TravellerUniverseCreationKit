@@ -1,7 +1,7 @@
 TravellerUniverseCreationKit
 ============================
 
-This is a fairly simple implementation of the system- and subsector generation rules presented in Mongoose's Traveller core rulebook. It primarily presents JSON-objects for third-parties to consume, but also provides an incredibly rudimentary HTML-page. 
+This is a fairly simple implementation of the system- and subsector generation rules presented in Mongoose's Traveller core rulebook. It primarily presents JSON-objects for third-parties to consume, but also provides a simple webpage for looking around your creation. 
 
 This should hopefully be your one-stop shop for systems and subsectors.
 
