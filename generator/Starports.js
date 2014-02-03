@@ -112,27 +112,34 @@ module.exports.select = function(Dice){
 		"Fuel": template.Fuel,
 		"Facilities": template.Facilities,
 		"Bases": [],
-		"TechDM": template.TechDM
+		"TechDM": template.TechDM,
+		"ProfilePart": ""
 	}
 	if (Dice.rollD6(2) > template["Naval Base"]) {
 		port.Bases.push({"Base": "Naval Base"});
 		port.HasNavalBase = true;
+		port.ProfilePart += "N";
 	}
 	if (Dice.rollD6(2) > template["Scout Base"]) {
 		port.Bases.push({"Base": "Scout Base"});
+		port.ProfilePart += "S";
 	}
 	if (Dice.rollD6(2) > template["Research Base"]) {
 		port.Bases.push({"Base": "Research Base"});
+		port.ProfilePart += "R";
 	}
 	if (Dice.rollD6(2) > template["TAS"]) {
 		port.Bases.push({"Base": "TAS"});
+		port.ProfilePart += "T";
 	}		
 	if (Dice.rollD6(2) > template["Imperial Consulate"]) {
 		port.Bases.push({"Base": "Imperial Consulate"});
 		port.HasImperialConsulate = true;
+		port.ProfilePart += "I";
 	}
 	if (Dice.rollD6(2) > template["Pirate"]) {
 		port.Bases.push({"Base": "Pirate"});
+		port.ProfilePart += "P";
 	}
 
 	return port;

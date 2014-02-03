@@ -27,6 +27,63 @@ module.exports.distance = function(SystemA, SystemB) {
 	return Math.max(Math.abs(SystemA.Coordinate.row - SystemB.Coordinate.row), Math.abs(SystemA.Coordinate.column - SystemB.Coordinate.column));
 }
 
+function generateProfile(system, coordinate) {
+	return system.Name.name + " " + coordinate.coordinate + 
+		" " + system.Starport.Class + 
+		asDigit(system.Size.roll) +
+		asDigit(system.Atmosphere.roll) +
+		asDigit(system.Hydrographics.roll) + 
+		asDigit(system.Population.roll) +
+		asDigit(system.Government.roll) +
+		asDigit(system.Laws.roll) + "-" +
+		asDigit(system.TechLevel.level) + " " +
+		system.Starport.ProfilePart +
+		tradeCodeAsProfilePart(system.TradeCodes) +
+		travelCodeAsProfilePart(system.TravelCode);
+}
+
+function travelCodeAsProfilePart(TC) {
+	if (TC == "Amber") {
+		return "A";
+	}
+	if (TC == "Red") {
+		return "R";
+	}
+	return "";
+}
+
+function tradeCodeAsProfilePart(TradeCodes) {
+	var condensed = "";
+
+	TradeCodes.forEach(function(TC) {
+		condensed += TC.Code;
+	});
+
+	return condensed;
+}
+
+function asDigit(roll) {
+	switch(roll) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9: return roll;
+		case 10: return "A";
+		case 11: return "B";
+		case 12: return "C";
+		case 13: return "D";
+		case 14: return "E";
+		case 15: return "F";
+		default: return "?";
+	}
+}
+
 function neighbouringCoordinates(Coordinate) {
 	var neighbours = [];
 	var rowDelta = (Coordinate.column % 2 == 1) ? -1 : 0;
@@ -102,7 +159,8 @@ module.exports.generate = function() {
 				var system = Starsystem.generate(Names.select());
 				subsector.systems.push({
 									"Coordinate": coordinate,
-									"System": system		
+									"System": system,
+									"UniversialWorldProfile": generateProfile(system, coordinate)		
 								});
 				populatedSectors++;
 				totalPopulation += system.Population.roll;
