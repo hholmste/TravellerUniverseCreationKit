@@ -34,15 +34,14 @@ function initialize_all_the_things() {
 	});
 }
 
-// the TUCT main app thingamajig
 function createFreshSubsector() {
 	var req = new XMLHttpRequest();
-	req.onload = readSubSystem;
+	req.onload = readSubSector;
 	req.open("get", "/NewSubSector", true);
 	req.send();
 }
 
-function readSubSystem() {
+function readSubSector() {
 	var subsector = JSON.parse(this.responseText);
 
 	subsector.selectSystem = function(system_id) {
@@ -96,8 +95,7 @@ var sectorDataTemplate = '<div class="sectorinfo">'
 													+ '</div>';
 
 var system_data_template = '<div class="systeminfo">'
-													+ '<div class="infoline">System <span class="namespan infopoint" contentEditable="true">{{System.Name.name}}</span></div>'
-													+ '<div class="infoline">Travelcode <span class="infopoint tc_{{System.TravelCode}}">{{System.TravelCode}}</span></div>'
+													+ '<div class="infoline">UWP <span class="infopoint">{{UniversialWorldProfile}}</span></div>'
 													+ '</div>';
 
 var empty_system_template = '<div class="systeminfo"><div class="systeminfoline emptysysteminfo">Nothing at {{Coordinate.coordinate}}</div></div>';
