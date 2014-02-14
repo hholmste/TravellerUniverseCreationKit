@@ -127,15 +127,15 @@ function select_system(system_id) {
 }
 
 
-var sectorDataTemplate = '<div class="sectorinfo">'
+var sectorDataTemplate = '<div id="sectorinfo">'
 													+ '<div class="infoline">Subsector <span class="namespan infopoint" contentEditable="true">{{Name.name}}</span></div>'
 													+ '<div class="infoline">Populated worlds: <span class="populatedworldsspan infopoint">{{PopulatedWorlds}}</span></div>'
 													+ '<div class="infoline">Average population level <span class="avgpopulation infopoint">{{AveragePopulation}}</span></div>'
 													+ '<div class="infoline">Average tech level: <span class="avgtechlevel infopoint">{{AverageTechLevel}}</span></div>'
 													+ '</div>';
 
-var system_data_template = '<div class="systeminfo">'
+var system_data_template = '<div id="systeminfo">'
 													+ '<div class="infoline">UWP <span class="infopoint">{{UniversialWorldProfile}}</span></div>'
 													+ '</div>';
 
-var empty_system_template = '<div class="systeminfo"><div class="systeminfoline emptysysteminfo">Nothing at {{Coordinate.coordinate}}</div></div>';
+var empty_system_template = '<div id="systeminfo"><div class="systeminfoline emptysysteminfo">Nothing at {{Coordinate.coordinate}}</div></div>';

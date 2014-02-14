@@ -53,6 +53,7 @@ text {
 }
 
 #mapContainer {
+  display: block;
   height: 1452px;
   width: 100%;
 }
