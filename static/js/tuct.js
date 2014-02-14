@@ -56,18 +56,37 @@ function push_system(translation, scale, system_id) {
 		.attr("id", "text_" + system_id)
 		.attr("x", translation.x - 0.25 * scale)
 		.attr("y", translation.y - 0.5 * scale)
+		.classed("coordinate_text", true)
 		.on("click", function(){select_system(system_id);});
 
 	return path;
 }
 
-function push_system_details(id, translation, scale, system) {
+function push_system_details(system_id, translation, scale, system) {
+	if (system.System.TravelCode == "Amber") {
+		map_root.append("circle")
+			.attr("id", "star_ta_" + system_id)
+			.attr("cx", translation.x)
+			.attr("cy", translation.y)
+			.attr("r", scale * 0.45)
+			.classed("codeAmber", true)
+			.on("click", function(){select_system(system_id);});
+	}
+
+	map_root.append("text")
+		.text(system.System.Starport.Class)
+		.attr("id", "starport_class_" + system_id)
+		.attr("x", translation.x - 6)
+		.attr("y", translation.y - 0.25 * scale)
+		.on("click", function(){select_system(system_id);});
+
 	map_root.append("circle")
-		.attr("id", "star_" + id)
+		.attr("id", "star_" + system_id)
 		.attr("cx", translation.x)
 		.attr("cy", translation.y)
 		.attr("r", scale * 0.15)
-		.classed("star", true);
+		.classed("star", true)
+		.on("click", function(){select_system(system_id);});
 }
 
 function createFreshSubsector() {

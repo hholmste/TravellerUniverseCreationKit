@@ -59,5 +59,13 @@ text {
 }
 
 .star {
-  fill: #DD1;
+  fill: #FF9;
+}
+
+.codeAmber {
+  fill: #FFC200;
+}
+
+.coordinate_text {
+  fill: #77E;
 }
