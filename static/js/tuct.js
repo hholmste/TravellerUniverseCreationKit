@@ -1,4 +1,5 @@
 var Mustache;
+var D3;
 var currentSector;
 var current_system;
 
@@ -6,31 +7,68 @@ var columns = ["01", "02", "03", "04", "05", "06", "07", "08"];
 var rows = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
 
 require(
-	["mustache.js"],
-	function(stache){
+	["mustache.js", "d3.v3.js"],
+	function(stache, d3){
 		Mustache = stache;
+		D3 = d3;
 		initialize_all_the_things();
 	});
 
-function initialize_all_the_things() {
-	var subsectorElement = document.getElementById("subsector");
+function refreshMap () {
+	var subsectorNode = document.getElementById("subsector");	
+	while (subsectorNode.lastChild) {
+    subsectorNode.removeChild(subsectorNode.lastChild);
+	}
+}
+
+var hexPoints = [
+		{"y": 0.87,  "x": 0.5},
+		{"y": 0.0,   "x": 1.0},
+		{"y": -0.87, "x": 0.5},
+		{"y": -0.87, "x": -0.5},
+		{"y": 0.0,   "x": -1.0},
+		{"y": 0.87,  "x": -0.5},
+		{"y": 0.87,  "x": 0.5}
+];
+
+function pushSystem(root, translation, scale) {
+	var linefunction = D3.svg.line()
+		.x(function(d){return translation.x + (d.x * scale);})
+		.y(function(d){return translation.y + (d.y * scale);})
+		.interpolate("linear");
+
 	
+			root.append("path")
+				.attr("d", linefunction(hexPoints))
+				.attr("stroke", "blue")
+				.attr("stroke-width", 3)
+				.attr("fill", "lightgray");
+}
+
+function initialize_all_the_things() {
+	refreshMap();
+	var root = D3.select("#subsector")
+			.append("svg")
+				.attr("id", "mapContainer")
+				.attr("height", 1024)
+				.attr("width", 800);
+
+	var rc = 0;
+	var cc = 0;
 	rows.forEach(function(row) {
-		var rowElement = document.createElement("div");
-		rowElement.classList.add("systemrow");
-		subsectorElement.appendChild(rowElement);
-		
+		cc = 0;
+
 		columns.forEach(function(column){
 			var system_id = column + row;
-			var system = document.createElement("div");
-			system.classList.add("system");
-			system.innerHTML = system_id;
-			system.id = system_id;
-			system.onclick = function() {
-				select_system(system_id);
-			};
-			rowElement.appendChild(system);
+			var scale = 66;
+			var oddScale = 0;
+			if (cc % 2 == 0) {
+				oddScale = 0.87 * scale;
+			}
+			pushSystem(root, {"x": 70 + 1.5 * scale * cc, "y": 30 + scale * rc * 1.7+ oddScale}, scale);
+			cc++;
 		});
+		rc++;
 	});
 }
 
