@@ -57,3 +57,7 @@ text {
   height: 1452px;
   width: 100%;
 }
+
+.star {
+  fill: #DD1;
+}

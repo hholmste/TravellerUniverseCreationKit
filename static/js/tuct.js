@@ -61,6 +61,15 @@ function push_system(translation, scale, system_id) {
 	return path;
 }
 
+function push_system_details(id, translation, scale, system) {
+	map_root.append("circle")
+		.attr("id", "star_" + id)
+		.attr("cx", translation.x)
+		.attr("cy", translation.y)
+		.attr("r", scale * 0.15)
+		.classed("star", true);
+}
+
 function createFreshSubsector() {
 	var req = new XMLHttpRequest();
 	req.onload = readSubSector;
@@ -98,6 +107,7 @@ function setSectorData(sectorData) {
 		} else {
 			systemHolder.classed("populated_system", true);
 			systemHolder.classed("empty_system", false);
+			push_system_details(id, translation, scale, system);
 		}
 	});
 }
