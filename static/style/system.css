@@ -1,7 +1,6 @@
 .system {
 	background: #FFF;
   color: #FFF;
-  opacity: 0.9;
   width: 75px;
   height: 106px;
   position: relative;
@@ -11,36 +10,23 @@
 }
 
 .populated_system {
-  background: #AAE;
-  color: #444;
+  fill:#AAE;
 }
 
 .empty_system {
-  background: #99E;
-  color: #222;
+  fill: #99E;
 }
 
 .populated_system:hover {
-  background-color: #DDF;
+  fill: #DDF;
 }
 
-.system::after,
-.system::before {
-  content: '';
-  width: 75px;
-  height: 75px;
-  position: absolute;
-  background: inherit;
-  z-index: -1;
-  top: 16px;
-  transform: scaleX(0.5)rotate(45deg);
-  }
-
-.system::before {
-  left: -38px;
+path {
+  stroke: #559;
 }
-.system::after {
-  left: 38px;
+
+text {
+  fill: #55C;
 }
 
 .systemrow {
@@ -67,6 +53,6 @@
 }
 
 #mapContainer {
-  height: 100%;
+  height: 1452px;
   width: 100%;
 }

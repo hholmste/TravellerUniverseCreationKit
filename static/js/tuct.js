@@ -2,6 +2,8 @@ var Mustache;
 var D3;
 var currentSector;
 var current_system;
+var map_root;
+var scale = 66;
 
 var columns = ["01", "02", "03", "04", "05", "06", "07", "08"];
 var rows = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"];
@@ -11,14 +13,19 @@ require(
 	function(stache, d3){
 		Mustache = stache;
 		D3 = d3;
-		initialize_all_the_things();
+		refreshMap();
 	});
 
-function refreshMap () {
+function refreshMap() {
 	var subsectorNode = document.getElementById("subsector");	
+	
 	while (subsectorNode.lastChild) {
     subsectorNode.removeChild(subsectorNode.lastChild);
 	}
+
+	map_root = root = D3.select("#subsector")
+		.append("svg")
+			.attr("id", "mapContainer");
 }
 
 var hexPoints = [
@@ -31,45 +38,27 @@ var hexPoints = [
 		{"y": 0.87,  "x": 0.5}
 ];
 
-function pushSystem(root, translation, scale) {
+function push_system(translation, scale, system_id) {
 	var linefunction = D3.svg.line()
 		.x(function(d){return translation.x + (d.x * scale);})
 		.y(function(d){return translation.y + (d.y * scale);})
 		.interpolate("linear");
 
-	
-			root.append("path")
-				.attr("d", linefunction(hexPoints))
-				.attr("stroke", "blue")
-				.attr("stroke-width", 3)
-				.attr("fill", "lightgray");
-}
+	var path = map_root
+		.append("path")
+			.attr("d", linefunction(hexPoints))
+			.attr("id", system_id)
+			.attr("class", "system")
+			.on("click", function(){select_system(system_id);});		
 
-function initialize_all_the_things() {
-	refreshMap();
-	var root = D3.select("#subsector")
-			.append("svg")
-				.attr("id", "mapContainer")
-				.attr("height", 1024)
-				.attr("width", 800);
+	map_root.append("text")
+		.text(system_id)
+		.attr("id", "text_" + system_id)
+		.attr("x", translation.x - 0.25 * scale)
+		.attr("y", translation.y - 0.5 * scale)
+		.on("click", function(){select_system(system_id);});
 
-	var rc = 0;
-	var cc = 0;
-	rows.forEach(function(row) {
-		cc = 0;
-
-		columns.forEach(function(column){
-			var system_id = column + row;
-			var scale = 66;
-			var oddScale = 0;
-			if (cc % 2 == 0) {
-				oddScale = 0.87 * scale;
-			}
-			pushSystem(root, {"x": 70 + 1.5 * scale * cc, "y": 30 + scale * rc * 1.7+ oddScale}, scale);
-			cc++;
-		});
-		rc++;
-	});
+	return path;
 }
 
 function createFreshSubsector() {
@@ -100,15 +89,28 @@ function setSectorData(sectorData) {
 
 	sectorData.systems.forEach(function(system){
 		var id = system.Coordinate.coordinate;
-		var systemHolder = document.getElementById(id);
+		var translation = system_id_to_translation(id, scale);
+		var systemHolder = push_system(translation, scale, id)
+
 		if (system.System == "Empty") {
-			systemHolder.classList.remove("populated_system");
-			systemHolder.classList.add("empty_system");
+			systemHolder.classed("populated_system", false);
+			systemHolder.classed("empty_system", true);
 		} else {
-			systemHolder.classList.remove("empty_system");
-			systemHolder.classList.add("populated_system");
+			systemHolder.classed("populated_system", true);
+			systemHolder.classed("empty_system", false);
 		}
 	});
+}
+
+function system_id_to_translation(system_id, scale) { 
+	var cc = parseInt(system_id.substring(0, 2)) - 1;
+	var rc = parseInt(system_id.substring(2, 4)) - 1;
+	var oddScale = 0;
+			if (cc % 2 == 1) {
+				oddScale = 0.87 * scale;
+			}
+	return { "x": 70 + 1.5 * scale * cc * 1.00,
+					 "y": 70 + 1.0 * scale * rc * 1.74 + oddScale};
 }
 
 function select_system(system_id) {
