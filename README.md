@@ -10,5 +10,6 @@ It is implemented as a node.js application, so in order to use it for anything, 
 Usage: node server.js
 
 Future:
- - Save-button should _download_ the json for the current subsystem
+ - Save-button should _download_ the json for the current subsystem (or make available a download link)
  - The should be a load-button that let's users _upload_ json. There must necessarily be a lot of validation so we can give sensible error-messages when it predicably fails.
+ - Define some totally enterprisy interface and build a test-suite :)
