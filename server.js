@@ -80,15 +80,21 @@ app.get("/SubSector/:name", function (req, res) {
   });
 });
 
+app.del("/SubSector/:name", function (req, res) {
+  removeSubsectorByName(req.params.name, function () {
+    res.send(200);
+  });
+});
+
 app.post("/SaveSubSector", function (req, res) {
-  findSubsectorByName(req.body.Name.name, function (result) {
+  findSubsectorByName(req.body.Name.name, function () {
     console.log("Sector exists, must remove before save");
-    removeSubsectorByName(req.body.Name.name, function (deletionResult) {
+    removeSubsectorByName(req.body.Name.name, function () {
       console.log("Sector removed, now to insert");
       insertSubsector(req.body, function (insertionResult) {
         console.log("insertion success: " + insertionResult);
         res.send(200);
-      });  
+      });
     });
   }, function () {
     insertSubsector(req.body, function (result) {
